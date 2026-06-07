@@ -1,32 +1,32 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../const.ts';
-import LoginScreen from '../pages/login-screen/login-screen.tsx';
-import ErrorPage from '../pages/error/error.tsx';
-import MainPage from '../pages/main-screen/main-screen.tsx';
-import FavoritesScreen from '../pages/favorites-screen/favorites-screen.tsx';
-import Offer from '../pages/offer-screen/offer-screen.tsx';
+import {Offer} from '../types/type-offers.ts';
+import LoginPage from '../pages/login-page/login-page.tsx';
+import ErrorPage from '../pages/error-page/error-page.tsx';
+import MainPage from '../pages/main-page/main-page.tsx';
+import FavoritesPage from '../pages/favorites-page/favorites-page.tsx';
+import OfferPage from '../pages/offer-page/offer-page.tsx';
 import PrivateRoute from '../components/private-route/private-route.tsx';
 
-
 type AppProps = {
-  offersCount: number;
+  offers: Offer[];
 }
 
-function App({offersCount} : AppProps):JSX.Element{
+function App({offers}:AppProps): JSX.Element{
   return(
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
-          element={<MainPage offersCount={offersCount}/>}
+          path={AppRoute.Main}
+          element={<MainPage offers={offers}/>}
         />
         <Route
           path={AppRoute.Login}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <LoginScreen/>
+              <LoginPage/>
             </PrivateRoute>
           }
         />
@@ -34,15 +34,15 @@ function App({offersCount} : AppProps):JSX.Element{
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen/>
+              <FavoritesPage offers={offers}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Offer}
-          element={<Offer/>}
+          element={<OfferPage offers={offers}/>}
         />
         <Route
           path="*"
