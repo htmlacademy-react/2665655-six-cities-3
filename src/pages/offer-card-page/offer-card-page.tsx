@@ -1,4 +1,4 @@
-function OfferCard (): JSX.Element {
+function OfferCardPage (): JSX.Element {
   return (
     <article className="favorites__card place-card">
       <div className="place-card__mark">
@@ -37,4 +37,4 @@ function OfferCard (): JSX.Element {
   );
 }
 
-export default OfferCard;
+export default OfferCardPage;
