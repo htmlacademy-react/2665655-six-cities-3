@@ -5,26 +5,33 @@ type ReviewFormData={
   review:string;
 }
 
+// функция для отрисовки формы отзыва
+
 function ReviewForm(){
   const [formData, setFormData] = useState<ReviewFormData>({
     rating:'',
     review:'',
   });
 
+  // Функция которая срабатывает,когда пользователь кликает по звездочке
 
-  function handleRatingChange(evt: ChangeEvent<HTMLInputElement>){
+  const handleRatingChange= (evt: ChangeEvent<HTMLInputElement>)=>{
     setFormData({
       ...formData,
       rating: evt.target.value,
     });
-  }
+  };
 
-  function handleReviewChange(evt: ChangeEvent<HTMLTextAreaElement>){
+  // Функция которая срабатывает, когда пользователь печатает буквы в большом поле
+
+  const handleReviewChange= (evt: ChangeEvent<HTMLTextAreaElement>)=>{
     setFormData({
       ...formData,
       review: evt.target.value,
     });
-  }
+  };
+
+  // Срабатывает когда пользователь нажимает кнопку Submit
 
   function handleSubmitChange(evt: FormEvent<HTMLFormElement>){
     evt.preventDefault();
@@ -52,7 +59,6 @@ function ReviewForm(){
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
-
         <input className="form__rating-input
       visually-hidden"
         name="rating"
@@ -67,7 +73,6 @@ function ReviewForm(){
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
-
         <input
           className="form__rating-input visually-hidden"
           name="rating"
@@ -82,7 +87,6 @@ function ReviewForm(){
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
-
         <input
           className="form__rating-input visually-hidden"
           name="rating"
@@ -97,7 +101,6 @@ function ReviewForm(){
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
-
         <input className="form__rating-input visually-hidden"
           name="rating"
           value="1"
@@ -105,7 +108,6 @@ function ReviewForm(){
           type="radio"
           checked={formData.rating === '1'}
           onChange={handleRatingChange}
-
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
@@ -113,10 +115,17 @@ function ReviewForm(){
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"/>
+      <textarea
+        className="reviews__textarea form__textarea"
+        id="review"
+        name="review"
+        placeholder="Tell how was your stay, what you like and what can be improved"
+        value={formData.review}
+        onChange={handleReviewChange}
+      />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-                      To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
       </div>

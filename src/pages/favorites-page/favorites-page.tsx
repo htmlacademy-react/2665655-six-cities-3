@@ -1,6 +1,6 @@
-import { Link} from 'react-router-dom';
+import { Link, generatePath} from 'react-router-dom';
 import { Offer } from '../../types/type-offers.ts';
-import { AppRoute } from '../../const.ts';
+import { AppRoute, STAR_WIDTH_PERCENT } from '../../const.ts';
 
 
 type FavoritePageProps ={
@@ -8,7 +8,8 @@ type FavoritePageProps ={
 }
 
 function FavoritesPage ({offers}:FavoritePageProps) : JSX.Element {
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite); // Cписок любимых отелей
+
   return(
     <div className="page">
       <header className="header">
@@ -26,7 +27,7 @@ function FavoritesPage ({offers}:FavoritePageProps) : JSX.Element {
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">{favoriteOffers.length}</span>
+                    <span className="header__favorite-count">{favoriteOffers.length}</span> {/* число избранных карточек */}
                   </Link>
                 </li>
                 <li className="header__nav-item">
@@ -54,50 +55,54 @@ function FavoritesPage ({offers}:FavoritePageProps) : JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {favoriteOffers.map((offer)=>(
-                    <article key={offer.id} className="favorites__card place-card">
-                      {offer.isPremium && (
-                        <div className="place__card-mark">
-                          <span>Premium</span>
-                        </div>
-                      )}
-                      <div className="favorites__image-wrapper place-card__image-wrapper">
-                        <Link to={`/offer/${offer.id}`}>
-                          <img
-                            className="place__card-image"
-                            src={offer.previewImage}
-                            width="150"
-                            height="110"
-                            alt="Place image"
-                          />
-                        </Link>
-                      </div>
-                      <div className="favorites__card-info place-card__info">
-                        <div className="place-card__price-wrapper">
-                          <div className="place-card__price">
-                            <b className="place-card__price-value">&euro;{offer.price}</b>
-                            <span className="place-card__price-text">&#47;&nbsp;night</span>
+                  {favoriteOffers.map((offer)=> {
+                    const offerPath = generatePath(AppRoute.Offer, {id: offer.id}); // Создает уникальную ссылку
+
+                    return(
+                      <article key={offer.id} className="favorites__card place-card">
+                        {offer.isPremium && (
+                          <div className="place__card-mark">
+                            <span>Premium</span>
                           </div>
-                          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                            <svg className="place-card__bookmark-icon" width="18" height="19">
-                              <use href="#icon-bookmark"></use>
-                            </svg>
-                            <span className="visually-hidden">In bookmarks</span>
-                          </button>
+                        )}
+                        <div className="favorites__image-wrapper place-card__image-wrapper">
+                          <Link to={offerPath}>
+                            <img
+                              className="place__card-image"
+                              src={offer.previewImage}
+                              width="150"
+                              height="110"
+                              alt="Place image"
+                            />
+                          </Link>
                         </div>
-                        <div className="place-card__rating rating">
-                          <div className="place-card__stars rating__stars">
-                            <span style={{width: `${offer.rating * 20}%`}}></span>
-                            <span className="visually-hidden">Rating</span>
+                        <div className="favorites__card-info place-card__info">
+                          <div className="place-card__price-wrapper">
+                            <div className="place-card__price">
+                              <b className="place-card__price-value">&euro;{offer.price}</b>
+                              <span className="place-card__price-text">&#47;&nbsp;night</span>
+                            </div>
+                            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+                              <svg className="place-card__bookmark-icon" width="18" height="19">
+                                <use href="#icon-bookmark"></use>
+                              </svg>
+                              <span className="visually-hidden">In bookmarks</span>
+                            </button>
+                          </div>
+                          <div className="place-card__rating rating">
+                            <div className="place-card__stars rating__stars">
+                              <span style={{width: `${offer.rating * STAR_WIDTH_PERCENT}%`}}></span>
+                              <span className="visually-hidden">Rating</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <h2 className="place-card__name">
-                        <Link to ={`/offer/${offer.id}`}>{offer.title}</Link>
-                      </h2>
-                      <p className="place-card__type">{offer.type}</p>
-                    </article>
-                  ))}
+                        <h2 className="place-card__name">
+                          <Link to ={offerPath}>{offer.title}</Link>
+                        </h2>
+                        <p className="place-card__type">{offer.type}</p>
+                      </article>
+                    );
+                  })}
                 </div>
               </li>
             </ul>
@@ -110,7 +115,8 @@ function FavoritesPage ({offers}:FavoritePageProps) : JSX.Element {
             src="img/logo.svg"
             alt="6 cities logo"
             width="64"
-            height="33"/>
+            height="33"
+          />
         </Link>
       </footer>
     </div>

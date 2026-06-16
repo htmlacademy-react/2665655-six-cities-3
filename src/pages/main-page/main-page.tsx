@@ -3,15 +3,18 @@ import { AppRoute } from '../../const.ts';
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/type-offers.ts';
 import OfferList from '../../components/offer-list/offer-list.tsx';
-import App from '../../app/app.tsx';
+import Map from '../../components/map/map.tsx';
+import { amsterdam } from '../../mocks/offers.ts';
 
 type MainPageProps ={
 offers: Offer[];
 };
 
 function MainPage({offers}: MainPageProps): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
-  const favoriteOffersCount = offers.filter((offer) => offer.isFavorite).length;
+
+  const [activeOfferId, setActiveOfferId] = useState<string | null>(null); // прямо сейчас навел курсор мышки в списке.
+  const favoriteOffersCount = offers.filter((offer) => offer.isFavorite).length; // Подсчет избранных товаров для шапки
+  const selectedOffer = offers.find((offer)=> offer.id === activeOfferId); // ищет во всем массиве отелей один конкретный отель
 
   return (
     <div className="page page--gray page--main">
@@ -109,7 +112,11 @@ function MainPage({offers}: MainPageProps): JSX.Element {
               />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                city={amsterdam}
+                offers={offers}
+                selectedOffer={selectedOffer}
+              />
             </div>
           </div>
         </div>

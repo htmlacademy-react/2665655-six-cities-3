@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import {Link,useParams} from 'react-router-dom';
-import { AppRoute } from '../../const.ts';
+import { AppRoute, STAR_WIDTH_PERCENT } from '../../const.ts';
 import { Offer } from '../../types/type-offers.ts';
 import ReviewForm from '../../components/review-form/review-form.tsx';
 
@@ -98,21 +99,22 @@ function OfferPage({offers}:OfferPageProps): JSX.Element {
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{title}</h1>
-                <button className={`offer__bookmark-butoon ${
-                  isFavorite ? 'offer__bookmark-button--active' : ''
-                } button`}
+                <button className={classNames(
+                  'offer__bookmark-button',
+                  'button',
+                  {'offer__bookmark-button--active': isFavorite})}
                 type="button"
                 >
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use href="#icon-bookmark"></use>
                   </svg>
-                  <span className="visually-hidden">{isFavorite ? 'In bookmarks': 'To bookmarks'}
+                  <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks'}
                   </span>
                 </button>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: `${rating * 20}%`}}></span>
+                  <span style={{width: `${rating * STAR_WIDTH_PERCENT}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{rating}</span>
@@ -215,7 +217,7 @@ function OfferPage({offers}:OfferPageProps): JSX.Element {
                     </div>
                   </li>
                 </ul>
-               <ReviewForm/>
+                <ReviewForm/>
               </section>
             </div>
           </div>
@@ -223,7 +225,7 @@ function OfferPage({offers}:OfferPageProps): JSX.Element {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">Other places in the Neighbourhood</h2>
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
