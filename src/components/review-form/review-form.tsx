@@ -15,7 +15,7 @@ function ReviewForm(){
 
   // Функция которая срабатывает,когда пользователь кликает по звездочке
 
-  const handleRatingChange= (evt: ChangeEvent<HTMLInputElement>)=>{
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>)=>{
     setFormData({
       ...formData,
       rating: evt.target.value,
@@ -24,7 +24,7 @@ function ReviewForm(){
 
   // Функция которая срабатывает, когда пользователь печатает буквы в большом поле
 
-  const handleReviewChange= (evt: ChangeEvent<HTMLTextAreaElement>)=>{
+  const handleReviewChange = (evt: ChangeEvent<HTMLTextAreaElement>)=>{
     setFormData({
       ...formData,
       review: evt.target.value,

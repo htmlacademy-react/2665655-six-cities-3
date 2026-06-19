@@ -15,3 +15,4 @@ export const STAR_WIDTH_PERCENT = 20;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg'; // Путь к картинке Обычного маркера
 export const URL_MARKER_CURRENT = 'img/pin-active.svg'; // Путь к картинке Активного маркера
+export const NEARBY_OFFERS_LIMIT = 3;

@@ -7,7 +7,10 @@ type OfferListProps ={
   onCardMouseLeave:()=> void;
 };
 
-function OfferList ({offers, onCardMouseEnter, onCardMouseLeave}: OfferListProps) {
+function OfferList ({
+  offers,
+  onCardMouseEnter, onCardMouseLeave,
+}: OfferListProps) {
   return(
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
