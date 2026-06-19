@@ -2,6 +2,7 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../const.ts';
 import {Offer} from '../types/type-offers.ts';
 import LoginPage from '../pages/login-page/login-page.tsx';
+import {Review} from '../types/type-review.ts';
 import ErrorPage from '../pages/error-page/error-page.tsx';
 import MainPage from '../pages/main-page/main-page.tsx';
 import FavoritesPage from '../pages/favorites-page/favorites-page.tsx';
@@ -10,9 +11,10 @@ import PrivateRoute from '../components/private-route/private-route.tsx';
 
 type AppProps = {
   offers: Offer[];
+  reviews: Review[];
 }
 
-function App({offers}:AppProps): JSX.Element{
+function App({offers,reviews}:AppProps): JSX.Element{
   return(
     <BrowserRouter>
       <Routes>
@@ -42,7 +44,7 @@ function App({offers}:AppProps): JSX.Element{
         />
         <Route
           path={AppRoute.Offer}
-          element={<OfferPage offers={offers}/>}
+          element={<OfferPage offers={offers} reviews={reviews}/>}
         />
         <Route
           path="*"

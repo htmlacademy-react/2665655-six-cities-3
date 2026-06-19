@@ -5,13 +5,16 @@ import { Offer } from '../../types/type-offers.ts';
 
 type OfferCardProps ={
   offer: Offer;
-  onMouseEnter:(offerId:string)=> void;
-  onMouseLeave:()=> void;
-}
+  onMouseEnter?:(offerId:string)=> void;
+  onMouseLeave?:()=> void;
+};
 
-function OfferCard ({offer, onMouseEnter, onMouseLeave}: OfferCardProps){
+function OfferCard ({
+  offer,
+  onMouseEnter, onMouseLeave,
+}: OfferCardProps){
   const {id, title, type, price, rating, previewImage, isPremium, isFavorite} = offer;
-  const offerPath = generatePath(AppRoute.Offer, {id}); // собираем адреса/добавляем в шаблон/добавляем номер id
+  const offerPath = generatePath(AppRoute.Offer, {id}); // собираем адреса/добавляем в шаблон/добавляем к ним номер id
 
   // Cчитает каждую ширину в процентах
   // const ratingWidth = `${Math.round(rating) * 20}%`;
@@ -19,7 +22,7 @@ function OfferCard ({offer, onMouseEnter, onMouseLeave}: OfferCardProps){
   return(
     <article
       className="cities__card place-card"
-      onMouseEnter={() => onMouseEnter(id)}
+      onMouseEnter={() => onMouseEnter?.(id)}
       onMouseLeave={onMouseLeave}
     >
       {isPremium && (
@@ -27,7 +30,7 @@ function OfferCard ({offer, onMouseEnter, onMouseLeave}: OfferCardProps){
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="place__card-mark">
         <Link to={offerPath}>
           <img className="place-card__image"
             src={previewImage}
@@ -59,7 +62,7 @@ function OfferCard ({offer, onMouseEnter, onMouseLeave}: OfferCardProps){
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${rating * STAR_WIDTH_PERCENT} %`}}></span>
+            <span style={{ width: `${rating * STAR_WIDTH_PERCENT}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

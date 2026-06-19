@@ -9,6 +9,7 @@ type MapProps = {
   city: City;
   offers: Offer[];
   selectedOffer: Offer | undefined; // может быть выбрано или отсутсвовать
+  className?:string;
 }
 
 // создаем обычную иконку с параметрами
@@ -27,7 +28,7 @@ const currentCustomIcon = new Icon ({
   iconAnchor:[20,40]
 });
 
-function Map ({city, offers, selectedOffer}: MapProps){
+function Map ({city, offers, selectedOffer, className = 'cities__map map'}: MapProps){
   const mapRef = useRef(null);
   const map = useMap(mapRef,city);
 
@@ -56,7 +57,7 @@ function Map ({city, offers, selectedOffer}: MapProps){
 
   return (
     <section
-      className='cities__map map'
+      className={className}
       ref={mapRef}
     />
   );
