@@ -1,5 +1,5 @@
 import NearbyOfferCard from '../nearby-offer-card/nearby-offer-card';
-import { Offer } from '../../types/type-offers';
+import { Offer } from '../../types/type-offers.ts';
 
 type NearbyOffersListProps ={
   offers: Offer[];

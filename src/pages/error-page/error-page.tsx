@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../const.ts';
 
 function ErrorPage (): JSX.Element {
   return(

@@ -16,9 +16,6 @@ function OfferCard ({
   const {id, title, type, price, rating, previewImage, isPremium, isFavorite} = offer;
   const offerPath = generatePath(AppRoute.Offer, {id}); // собираем адреса/добавляем в шаблон/добавляем к ним номер id
 
-  // Cчитает каждую ширину в процентах
-  // const ratingWidth = `${Math.round(rating) * 20}%`;
-
   return(
     <article
       className="cities__card place-card"

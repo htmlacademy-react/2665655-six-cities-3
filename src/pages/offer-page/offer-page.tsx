@@ -1,13 +1,11 @@
 import classNames from 'classnames';
 import {Link,useParams} from 'react-router-dom';
-import { AppRoute, STAR_WIDTH_PERCENT } from '../../const.ts';
+import { AppRoute, STAR_WIDTH_PERCENT, NEARBY_OFFERS_LIMIT } from '../../const.ts';
 import { Offer} from '../../types/type-offers.ts';
 import { Review } from '../../types/type-review.ts';
 import ReviewForm from '../../components/review-form/review-form.tsx';
 import ReviewList from '../../components/review-list/review-list.tsx';
 import Map from '../../components/map/map.tsx';
-import OfferList from '../../components/offer-list/offer-list.tsx';
-import { NEARBY_OFFERS_LIMIT } from '../../const.ts';
 import NearbyOfferList from '../../components/nearby-offer-list/nearby-offer-list.tsx';
 
 type OfferPageProps ={
@@ -36,7 +34,7 @@ function OfferPage({offers,reviews}:OfferPageProps): JSX.Element {
   const nearbyOffers =
   // берет весь список отелей и выкидывает тот отель на котором мы находимся
     offers.filter((offer)=>offer.id !== currentOffer.id)
-      .slice(3, NEARBY_OFFERS_LIMIT); // ставим ограничение
+      .slice(3, NEARBY_OFFERS_LIMIT); // ограничение
 
   const {
     title,
