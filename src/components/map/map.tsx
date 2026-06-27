@@ -3,7 +3,7 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import { City, Offer } from '../../types/type-offers';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import 'leaflet/dist/leaflet.css';
-import useMap from '../hooks/use-map';
+import useMap from '../hooks/use-map.tsx';
 
 type MapProps = {
   city: City;
@@ -54,6 +54,18 @@ function Map ({city, offers, selectedOffer, className = 'cities__map map'}: MapP
       };
     }
   },[map, offers,selectedOffer]);
+
+  useEffect(()=>{
+    if(map){
+      map.setView(
+        {
+          lat: city.location.lat,
+          lng : city.location.lng,
+        },
+        city.location.zoom
+      );
+    }
+  }, [map,city]);
 
   return (
     <section
