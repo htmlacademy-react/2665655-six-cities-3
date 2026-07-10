@@ -1,20 +1,20 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../const.ts';
-import {Offer} from '../types/type-offers.ts';
-import LoginPage from '../pages/login-page/login-page.tsx';
-import {Review} from '../types/type-review.ts';
-import ErrorPage from '../pages/error-page/error-page.tsx';
-import MainPage from '../pages/main-page/main-page.tsx';
-import FavoritesPage from '../pages/favorites-page/favorites-page.tsx';
-import OfferPage from '../pages/offer-page/offer-page.tsx';
-import PrivateRoute from '../components/private-route/private-route.tsx';
+import {AppRoute, AuthorizationStatus} from '../const';
+import LoginPage from '../pages/login-page/login-page';
+import ErrorPage from '../pages/error-page/error-page';
+import MainPage from '../pages/main-page/main-page';
+import FavoritesPage from '../pages/favorites-page/favorites-page';
+import OfferPage from '../pages/offer-page/offer-page';
+import PrivateRoute from '../components/private-route/private-route';
+import Spinner from '../components/spinner/spinner';
+import { useAppSelector } from '../components/hooks/hook-index';
 
-type AppProps = {
-  offers: Offer[];
-  reviews: Review[];
-}
 
-function App({offers,reviews}:AppProps): JSX.Element{
+function App() {
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+  if (isOffersLoading) {
+    return <Spinner/>;
+  }
   return(
     <BrowserRouter>
       <Routes>
@@ -38,13 +38,13 @@ function App({offers,reviews}:AppProps): JSX.Element{
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesPage offers={offers}/>
+              <FavoritesPage />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Offer}
-          element={<OfferPage offers={offers} reviews={reviews}/>}
+          element={<OfferPage />}
         />
         <Route
           path="*"

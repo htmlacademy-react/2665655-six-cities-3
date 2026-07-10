@@ -1,3 +1,7 @@
+export enum APIRoute {
+  Offers = '/offers',
+}
+
 export enum AppRoute{
  Main = '/',
  Login = '/login',
@@ -8,7 +12,7 @@ export enum AppRoute{
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
+  Unknown = 'UNKNOWN',
 }
 
 export const STAR_WIDTH_PERCENT = 20;
@@ -39,3 +43,6 @@ export const SORT_OPTIONS = [
   SortOption.PriceHighToLow,
   SortOption.TopRatedFirst,
 ];
+
+export const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;

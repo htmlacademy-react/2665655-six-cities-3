@@ -1,6 +1,6 @@
 import { STAR_WIDTH_PERCENT } from '../../const';
 import {Review as ReviewType} from '../../types/type-review';
-import { formatReviewDate } from '../../util';
+import { formatReviewDate } from '../../utils.ts/utils-offers';
 
 type ReviewProps = {
   review: ReviewType;
