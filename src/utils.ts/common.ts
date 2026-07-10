@@ -3,8 +3,6 @@ const REVIEW_DATA_FORMAT = {
   year: 'numeric'
 } as const;
 
-// создаем функцию которая возвращает дату в строку
-
 export function formatReviewDate (date: string){
   return new Date(date).toLocaleDateString('en-US', REVIEW_DATA_FORMAT);
 }
