@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../components/hooks/hook-inde
 import CitiesList from '../../components/cities-list/cities-list.tsx';
 import SortingOptions from '../../components/sorting-option/sorting-option.tsx';
 import { getSortedOffers } from '../../utils.ts/utils-offers.ts';
+import { changeCity } from '../../store/offers-store/offers-action.ts';
 
 function MainPage(){
 

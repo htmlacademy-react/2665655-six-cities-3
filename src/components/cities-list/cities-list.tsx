@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { City } from '../../types/type-offers';
 
 type CitiesListProps = {
   cities: string[];
@@ -19,7 +18,6 @@ function CitiesList ({cities,activeCity,onCityClick}: CitiesListProps) {
               'tabs__item',
               {'tabs__item--active' : city === activeCity}
             )}
-            type="button"
             onClick={()=> onCityClick(city)}
           ><span>{city}</span>
           </button>

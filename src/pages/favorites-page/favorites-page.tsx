@@ -1,7 +1,6 @@
-import { Link, generatePath, useActionData} from 'react-router-dom';
+import { Link, generatePath} from 'react-router-dom';
 import { AppRoute, STAR_WIDTH_PERCENT } from '../../const.ts';
 import { useAppSelector } from '../../components/hooks/hook-index.ts';
-
 
 function FavoritesPage (){
   const offers = useAppSelector((state) => state.offers); // достаем прямо их хранилища
