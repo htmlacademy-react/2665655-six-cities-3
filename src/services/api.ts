@@ -1,10 +1,29 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosError } from 'axios';
 import { BACKEND_URL, REQUEST_TIMEOUT } from '../const';
+import {getToken} from './services-tokens';
+
+type DetailMessage = {
+  type: string
+  message: string
+};
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT
   });
-  return api;
+
+api.interceptors.request.use((config) => {
+    const token = getToken();
+    if(token && config.headers){
+      config.headers['x-token'] = token;
+    }
+    return config
+});
+
+api.interceptors.response.use((response) => response,(error: AxiosError<DetailMessage>) => {
+    throw error;
+  }
+);
+return api;
 };

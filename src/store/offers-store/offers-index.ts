@@ -1,2 +1,2 @@
 export type {Reducer} from '@reduxjs/toolkit';
-export {changeCity,fillOffers,setOffersLoadingStatus} from './offers-action';
+export {changeCity,fillOffers, requireAuthorization,setOffersLoadingStatus} from './offers-action';

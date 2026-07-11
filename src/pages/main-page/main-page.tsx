@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { AppRoute, CITIES, SortOption } from '../../const';
+import { AppRoute, CITIES, SortOption, AuthorizationStatus } from '../../const';
 import OfferList from '../../components/offer-list/offer-list.tsx';
 import Map from '../../components/map/map.tsx';
 import { useAppDispatch, useAppSelector } from '../../components/hooks/hook-index';
@@ -20,6 +20,9 @@ function MainPage(){
   const city = useAppSelector((state) => state.city); // заходим в хранилице и достаем оттуда обьект текушего города
 
   const offers = useAppSelector((state) => state.offers); // забираем из Redux массив offers
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   const currentCityOffers = offers.filter( //имя города совпадает с именем текущего выбранного города
     (offer) => offer.city.name === city
@@ -50,19 +53,31 @@ function MainPage(){
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">{favoriteOffersCount}</span>
-                  </Link>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
+                {isAuth ? ( // ecли авторизован
+                  <>
+                    <li className="header__nav-item user">
+                      <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        </div>
+                        <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                        <span className="header__favorite-count">{favoriteOffersCount}</span>
+                      </Link>
+                    </li>
+                    <li className="header__nav-item">
+                      <a className="header__nav-link" href="#">
+                        <span className="header__signout">Sign out</span>
+                      </a>
+                    </li>
+                  </>
+                ) : ( // если НЕ авторизован
+                  <li className="header__nav-item user">
+                    <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
+                      <div className="header__avatar-wrapper user__avatar-wrapper">
+                      </div>
+                      <span className="header__login">Sign in</span>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </nav>
           </div>

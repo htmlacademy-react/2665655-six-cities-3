@@ -1,5 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../const';
+import {AppRoute} from '../const';
 import LoginPage from '../pages/login-page/login-page';
 import ErrorPage from '../pages/error-page/error-page';
 import MainPage from '../pages/main-page/main-page';
@@ -25,19 +25,13 @@ function App() {
         <Route
           path={AppRoute.Login}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
-            >
-              <LoginPage/>
-            </PrivateRoute>
+            <LoginPage/>
           }
         />
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <FavoritesPage />
             </PrivateRoute>
           }
