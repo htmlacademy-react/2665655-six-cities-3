@@ -1,7 +1,7 @@
 import { Link, generatePath } from 'react-router-dom';
 import classNames from 'classnames';
-import { AppRoute,STAR_WIDTH_PERCENT } from '../../const.ts';
-import { Offer } from '../../types/type-offers.ts';
+import { AppRoute,STAR_WIDTH_PERCENT } from '../../const';
+import { Offer } from '../../types/type-offers';
 
 type OfferCardProps ={
   offer: Offer;

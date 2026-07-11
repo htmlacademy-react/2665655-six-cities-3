@@ -1,19 +1,15 @@
 import classNames from 'classnames';
 import {Link,useParams} from 'react-router-dom';
 import { AppRoute, STAR_WIDTH_PERCENT, NEARBY_OFFERS_LIMIT } from '../../const.ts';
-import { Offer} from '../../types/type-offers.ts';
-import { Review } from '../../types/type-review.ts';
 import ReviewForm from '../../components/review-form/review-form.tsx';
 import ReviewList from '../../components/review-list/review-list.tsx';
 import Map from '../../components/map/map.tsx';
 import NearbyOfferList from '../../components/nearby-offer-list/nearby-offer-list.tsx';
+import { useAppSelector } from '../../components/hooks/hook-index.ts';
 
-type OfferPageProps ={
-  offers: Offer[];
-  reviews: Review[];
-}
 
-function OfferPage({offers,reviews}:OfferPageProps): JSX.Element {
+function OfferPage(){
+  const offers = useAppSelector((state) => state.offers);
   const {id} = useParams();
   const favoriteOfferCount = offers.filter ((offer) => offer.isFavorite).length;
   const currentOffer = offers.find((offer) => offer.id === id);
@@ -34,7 +30,7 @@ function OfferPage({offers,reviews}:OfferPageProps): JSX.Element {
   const nearbyOffers =
   // берет весь список отелей и выкидывает тот отель на котором мы находимся
     offers.filter((offer)=>offer.id !== currentOffer.id)
-      .slice(3, NEARBY_OFFERS_LIMIT); // ограничение
+      .slice(0, NEARBY_OFFERS_LIMIT); // ограничение
 
   const {
     title,
@@ -203,7 +199,7 @@ function OfferPage({offers,reviews}:OfferPageProps): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <ReviewList reviews={reviews}/>
+                <ReviewList reviews={[]}/>
                 <ReviewForm/>
               </section>
             </div>
