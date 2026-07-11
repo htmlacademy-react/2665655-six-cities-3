@@ -10,8 +10,8 @@ export const getToken = (): Token => {
 
 export const saveToken = (token: Token): void =>{
   localStorage.setItem(AUTH_TOKEN_KEY_NAME, token); // cохраняем авторизованного пользователя
-}
+};
 //когда пользователь нажимает выйти
 export const dropToken= () : void => {
   localStorage.removeItem(AUTH_TOKEN_KEY_NAME); //стираем ячейку
-}
+};
