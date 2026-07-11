@@ -1,6 +1,6 @@
 const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
-const type Token = string;
+export type Token = string;
 
 export const getToken = (): Token => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY_NAME);// заглядываем в память и оттуда зибираем токен
