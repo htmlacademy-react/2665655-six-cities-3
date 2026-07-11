@@ -3,8 +3,8 @@ import { BACKEND_URL, REQUEST_TIMEOUT } from '../const';
 import {getToken} from './services-tokens';
 
 type DetailMessage = {
-  type: string
-  message: string
+  type: string;
+  message: string;
 };
 
 export const createAPI = (): AxiosInstance => {
@@ -13,17 +13,17 @@ export const createAPI = (): AxiosInstance => {
     timeout: REQUEST_TIMEOUT
   });
 
-api.interceptors.request.use((config) => {
+  api.interceptors.request.use((config) => {
     const token = getToken();
     if(token && config.headers){
       config.headers['x-token'] = token;
     }
-    return config
-});
+    return config;
+  });
 
-api.interceptors.response.use((response) => response,(error: AxiosError<DetailMessage>) => {
+  api.interceptors.response.use((response) => response,(error: AxiosError<DetailMessage>) => {
     throw error;
   }
-);
-return api;
+  );
+  return api;
 };
