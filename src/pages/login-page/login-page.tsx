@@ -12,7 +12,7 @@ function LoginPage (): JSX.Element{
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if(emailRef.current !== null && passwordRef !== null){
+    if(emailRef.current !== null && passwordRef.current !== null){
       dispatch(loginAction({
         email: emailRef.current.value,
         password: passwordRef.current.value
