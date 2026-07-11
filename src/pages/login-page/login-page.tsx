@@ -2,7 +2,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useRef, FormEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../components/hooks/hook-index.ts';
-import {loginAction} from '../../store/api-actions.ts'
+import {loginAction} from '../../store/api-actions.ts';
 
 function LoginPage (): JSX.Element{
   const emailRef = useRef<HTMLInputElement | null>(null);
