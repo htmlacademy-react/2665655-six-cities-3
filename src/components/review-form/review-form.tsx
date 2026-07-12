@@ -15,7 +15,7 @@ type ReviewFormData = {
 // функция для отрисовки формы отзыва
 
 function ReviewForm({offerId}: ReviewFormProps){
-const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<ReviewFormData>({
     rating:'',
