@@ -1,14 +1,22 @@
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  Comments = '/comments',
+}
+
 export enum AppRoute{
  Main = '/',
  Login = '/login',
  Favorites ='/favorites',
- Offer ='/offer/:id'
+ Offer ='/offer/:id',
+ NotFound = '/404',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
+  Unknown = 'UNKNOWN',
 }
 
 export const STAR_WIDTH_PERCENT = 20;
@@ -16,6 +24,8 @@ export const STAR_WIDTH_PERCENT = 20;
 export const URL_MARKER_DEFAULT = 'img/pin.svg'; // Путь к картинке Обычного маркера
 export const URL_MARKER_CURRENT = 'img/pin-active.svg'; // Путь к картинке Активного маркера
 export const NEARBY_OFFERS_LIMIT = 3;
+export const OFFER_IMAGES_LIMIT = 6;
+
 
 export const CITIES = [
   'Paris',
@@ -39,3 +49,12 @@ export const SORT_OPTIONS = [
   SortOption.PriceHighToLow,
   SortOption.TopRatedFirst,
 ];
+
+export const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;
+
+export const MIN_REVIEW_LENGTH = 50;
+
+export const MAX_REVIEW_LENGTH = 300;
+
+export const REVIEWS_LIMIT = 10;

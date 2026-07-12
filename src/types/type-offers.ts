@@ -1,6 +1,6 @@
 export type Location = {
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
   zoom: number;
 }
 
@@ -21,3 +21,18 @@ export type Offer = {
   isFavorite: boolean;
   isPremium: boolean;
 }
+
+export type Host = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+};
+
+export type OfferDetails = Offer & {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: Host;
+  images: string[];
+  maxAdults: number;
+};
